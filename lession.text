@@ -1,0 +1,5 @@
+npm init
+it will create a json file, in which start put index.js
+when just write nodemon and your server run i.e. index.js file automatically run
+
+npm install express mongoose bcryptjs express-validator body-parser cors morgan dotenv --save
