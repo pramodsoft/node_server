@@ -8,6 +8,7 @@ app.use(express.static('public'));
 //now any file in public folder may be used, just avoid public to add in url
 //expree.statis is mainly used to get css and other js file, the example shown in html file
 app.use(express.static('public/dist'));
+app.use(express.static('public/project1/dist'));
 
 
 app.get("/",(req,res)=>{
@@ -22,6 +23,10 @@ res.sendFile(__dirname+"/public/test.html");
 app.get("/vue",(req,res)=>{
 res.sendFile(__dirname+"/public/dist/index.html");
 });
+
+app.get("/project1",(req,res)=>{
+    res.sendFile(__dirname+"/public/project1/dist/index.html");
+    });
 
 app.listen(3000,()=>{
 console.log("server running successfully");
