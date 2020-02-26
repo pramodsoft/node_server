@@ -10,10 +10,12 @@ const port=process.env.PORT;
 
 const app=express();
 const database= require('./database');
+const userController=require('./controllers/userController');
 
 //middleware setup
 app.use(morgan('dev'));
 app.use(cors());
+app.use('/api/user',userController)
 
 //defaults routes
 

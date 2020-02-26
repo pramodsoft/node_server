@@ -20,7 +20,7 @@ function(error,link) {
  assert.equal(error,null,"DB CONNECTION finally..")   
  //OK
  console.log('DB CONNECT SUCCESS...');
- console.log(link);
+ //console.log(link);
 }
 
 
