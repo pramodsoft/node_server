@@ -48,10 +48,15 @@ function(req,res){
 
         });
     }
+
+    const hashedPassword=bcrypt.hashSync(req.body.password,10);
+
+    //output data to user
     return res.json({
         status:true,
         message:'user data ok',
-        data:req.body
+        data:req.body,
+        hashedPassword:hashedPassword
     });
 
 });
