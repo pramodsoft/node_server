@@ -52,12 +52,46 @@ function(req,res){
     const hashedPassword=bcrypt.hashSync(req.body.password,10);
 
     //output data to user
+
+/*
+//used just to test data reached to server and get reponse
     return res.json({
         status:true,
         message:'user data ok',
         data:req.body,
         hashedPassword:hashedPassword
     });
+*/
+
+User.create(
+    {
+        username:req.body.username,
+        email:req.body.email,
+        password:hashedPassword
+
+    },
+    function(error,result){
+        //check error
+        if(error){
+           // return res.status(500).send("DB Insert fail...")
+           return res.json({
+               status:false,
+               message:'DB Insert fail...',
+               error:error
+           })
+
+        }
+        //if everything ok
+        return res.json({
+            status:true,
+            message:'DB Insert successfully',
+            result:result
+        });
+
+    }
+
+);
+
 
 });
 
