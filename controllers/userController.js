@@ -28,6 +28,35 @@ function (req,res){
 });
 
 
+router.post('/createNew',
+[
+    //check not emply field
+    check('username').not().isEmpty().trim().escape(),
+    check('password').not().isEmpty().trim().escape(),
+    check('email').isEmail().normalizeEmail()
+
+],
+
+function(req,res){
+    //check validation errors
+    const errors=validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(422).json({
+            status:false,
+            message:'form validation fails...',
+            errors:errors.array()
+
+        });
+    }
+    return res.json({
+        status:true,
+        message:'user data ok',
+        data:req.body
+    });
+
+});
+
+
 
 
 
