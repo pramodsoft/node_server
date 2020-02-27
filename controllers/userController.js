@@ -63,6 +63,8 @@ function(req,res){
     });
 */
 
+/*
+create method is used for inserting data to database
 User.create(
     {
         username:req.body.username,
@@ -91,6 +93,42 @@ User.create(
     }
 
 );
+*/
+
+//save method is used to insert data to database
+
+
+var user=new User({
+    username:req.body.username,
+        email:req.body.email,
+        password:hashedPassword,
+        password_normal:req.body.password
+
+});
+
+user.save(
+    function(error,result){
+        //check error
+        if(error){
+           // return res.status(500).send("DB Insert fail...")
+           return res.json({
+               status:false,
+               message:'DB Insert fail...',
+               error:error
+           })
+
+        }
+        //if everything ok
+        return res.json({
+            status:true,
+            message:'DB Insert successfully',
+            result:result
+        });
+
+    }
+
+)
+
 
 
 });
