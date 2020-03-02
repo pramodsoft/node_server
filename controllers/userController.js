@@ -63,8 +63,10 @@ function(req,res){
     });
 */
 
-/*
-create method is used for inserting data to database
+
+//create method is used for inserting data to database
+// i will use this method only to save data to database
+//as this method use standard way to save data in database
 User.create(
     {
         username:req.body.username,
@@ -93,10 +95,13 @@ User.create(
     }
 
 );
-*/
+
+
+
+
 
 //save method is used to insert data to database
-
+/*
 
 var user=new User({
     username:req.body.username,
@@ -129,9 +134,45 @@ user.save(
 
 )
 
-
+*/
 
 });
+
+
+
+router.get(
+    '/find',
+    function(req,res){
+        //find user document
+
+    User.find(
+        function(error,result){
+            if(error){
+                return res.json({
+                    status:false,
+                    message:'find not working...',
+                    error:error
+                })
+            }
+
+            return res.json({
+                status:true,
+                message:'find successful',
+                result:result
+            })
+
+
+
+        }
+
+    )
+
+
+
+
+
+    }
+)
 
 
 
