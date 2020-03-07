@@ -286,7 +286,6 @@ router.put(
         User.find(
             {
                 username: req.body.username,
-                password_normal: req.body.password_normal
             },
             function (error,result) {
                 if (error) {
@@ -296,24 +295,32 @@ router.put(
                         error: error
                     })
                 }
-                if(result.length){
-                return res.json({
-                    status: true,
-                    username:req.body.username,
-                    password: req.body.password_normal,
-
-                    message: 'login33 successful',
-                    result:result
+                if(result){
+                   // res.send("result found"+result);
+                  
+                const isMatch=bcrypt.compareSync(req.body.password,result[0].password);
+                if(isMatch){
+                res.json({
+                    isMatch:isMatch,
+                    message:"matched perfectly",
+                    server_password:result[0].password,
+                    result:result,
+                    send_password:req.body.password
                 })
+                
             }else{
-                return res.json({
-                    status: false,
-                    message: 'Either used id or password wrong',
+                res.json({
+                    isMatch:isMatch,
+                    message:"not matched",
+                    server_password:result[0].password,
+                    result:result,
+                    send_password:req.body.password
                 })
 
             }
 
             }
+        }
 
 
 

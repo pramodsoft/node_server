@@ -11,7 +11,8 @@ const db_url=process.env.DB_URL;
 mongoose.connect(db_url,{
 useNewUrlParser:true,
 useUnifiedTopology:true,
-useCreateIndex:true
+useCreateIndex:true,
+
 
 },
 
